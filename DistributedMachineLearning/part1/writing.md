@@ -6,5 +6,5 @@
 
 一起来欣赏柯基吧！  
 
-  ![柯基](D:\研究生\gitbook\DistributedMachineLearning\img\icon.webp)
+  ![doge](../img/icon.webp) 
 
