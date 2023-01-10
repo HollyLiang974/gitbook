@@ -3,6 +3,8 @@
 
 # 定义仓库地址
 Git_Url='git@github.com:HollyLiang974/DistributedMachineLearning.git'
+# 源代码仓库地址
+Git_Origin_url = 'git@github.com:HollyLiang974/gitbook.git'
 
 echo '开始执行命令'
 # 生成静态文件
@@ -39,3 +41,23 @@ git push --force origin master
 # 返回到上一次的工作目录
 echo "回到刚才工作目录"
 cd -
+
+# 回到gitbook
+cd ../
+
+#当前路径
+
+echo "当前路径是$pwd"
+
+# 拉取gitbook 代码
+echo "拉取gitbook代码"
+
+git remote -v
+
+git pull origin master
+
+git add -A
+
+git commit -m "$message"
+
+git push origin master
