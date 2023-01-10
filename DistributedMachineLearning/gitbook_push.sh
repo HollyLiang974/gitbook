@@ -52,12 +52,16 @@ echo "当前路径是$pwd"
 # 拉取gitbook 代码
 echo "拉取gitbook代码"
 
+echo "git remote -v"
 git remote -v
 
+echo "git pull origin master"
 git pull origin master
 
 git add -A
 
+echo "git commit -m $message"
 git commit -m "$message"
 
+echo "git push origin master"
 git push origin master
