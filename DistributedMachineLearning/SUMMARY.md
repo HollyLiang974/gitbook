@@ -2,8 +2,8 @@
 
 ## Part I
 * [Introduction](README.md)
-* [Writing is nice](part1/writing.md)
-* [GitBook is nice](part1/gitbook.md)
+    * [Writing is nice](part1/writing.md)
+        * [GitBook is nice](part1/gitbook.md)
 
 ## Part II
 * [We love feedback](part2/feedback_please.md)

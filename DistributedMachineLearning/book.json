@@ -1,8 +1,14 @@
 
 {
     "title": "分布式机器学习笔记",
-    "plugins": ["search-pro","code","expandable-chapters","back-to-top-button","theme-lou"],
+    "author": "爱学习的草履虫",
+    "lang": "zh-cn",
+    "description": "分布式机器学习笔记",
+    "plugins": ["search-pro","code","expandable-chapters","back-to-top-button","theme-lou","flexible-alerts"],
     "pluginsConfig": {
+      "flexible-alerts": {
+        "style": "flat" 
+      },
       "theme-lou": {
         "color": "#4169E1", 
         "favicon": "img/icon.gif",
@@ -11,8 +17,8 @@
         "copyrightLogo": "assets/copyright.png",  
         "forbidCopy": true, 
         "search-placeholder": "Input Keywords to Search",
-        "book-summary-title": "Article Directory", 
-        "book-anchor-title": "Search In the Article", 
+        "book-summary-title": "目录", 
+        "book-anchor-title": "本篇章节", 
         "hide-elements": [".summary .gitbook-link", ".summary .divider"], 
         "copyright": {
           "author": "爱学习的草履虫"  
