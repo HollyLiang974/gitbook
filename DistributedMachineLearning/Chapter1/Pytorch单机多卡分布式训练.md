@@ -16,17 +16,17 @@
 
 **world**可以认为是所有进程的集合。如下图中Host1中Host2中所有的进程集合被称为一个world，world size代表的就是这组能够通信的进程总数，图中world size=6。
 
-![world](D:\研究生\gitbook\DistributedMachineLearning\img\World.png)
+![world](../img/World.png)
 
 
 
 **rank** 可以认为是这组能够通信的进程在world中的序号
 
-![rank](D:\研究生\gitbook\DistributedMachineLearning\img\rank.png)
+![rank](../img\rank.png)
 
 **Local Rank** 可以认为是可以互相通信的进程在自己主机上的序号，注意每个主机中local rank的编号都是从零开始的
 
-![local Rank](D:\研究生\gitbook\DistributedMachineLearning\img\local rank.png)
+![local Rank](../img/local rank.png)
 
 ## 2. PyTorch单机多卡数据并行
 
@@ -246,4 +246,4 @@ if __name__ == "__main__":
 
 #### 训练效果
 
-![](D:\研究生\gitbook\DistributedMachineLearning\img\train.png)
+![train](../img/train.png)
