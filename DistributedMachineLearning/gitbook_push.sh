@@ -29,7 +29,7 @@ read message
 
 # 把修改的文件提交
 echo "执行命令：commit -m $message"
-git commit -m "$message"
+git commit -m '"$message"'
 
 # 如果发布到 https://<USERNAME>.github.io/<REPO>
 git remote rm origin 
@@ -61,7 +61,7 @@ git pull origin master
 git add -A
 
 echo "git commit -m $message"
-git commit -m "$message"
+git commit -m '"$message"'
 
 echo "git push origin master"
 git push origin master
