@@ -9,7 +9,7 @@ Git_Origin_url = 'git@github.com:HollyLiang974/gitbook.git'
 echo '开始执行命令'
 # 生成静态文件
 echo '执行命令：gitbook build .'
-gitbook build .
+npm run build
 
 # 进入生成的文件夹
 echo "执行命令：cd ./_book\n"
