@@ -1,9 +1,14 @@
 # Summary
 
-* [Pytorch分布式训练](Chapter1/Pytorch单机多卡分布式训练.md)
+## Chapter1
+* [Introduction](README.md)
+* [集合通信](chapter1/集合通信.md)
+* [分布式通信包 - torch.distributed](chapter1/torch_distributed.md)
+* [Pytorch分布式](chapter1/PyTorch进程通信.md)
+    * [单机分布式训练神经网络案例](chapter1/单机分布式训练MINIST.md)
+    * [单机分布式训练逻辑回归](chapter1/单机分布式训练Breast_Cancer.md)
 
 ## Part I
-* [Introduction](README.md)
 * [Writing is nice](part1/writing.md)
 * [GitBook is nice](part1/gitbook.md)
 
