@@ -15,7 +15,7 @@
         "logo": "img/icon.gif", 
         "appleTouchIconPrecomposed152": "static/apple.png", 
         "copyrightLogo": "assets/copyright.png",  
-        "forbidCopy": true, 
+        "forbidCopy": false, 
         "search-placeholder": "Input Keywords to Search",
         "book-summary-title": "目录", 
         "book-anchor-title": "本篇章节", 
