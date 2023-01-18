@@ -1,4 +1,4 @@
-# 单机分布式训练MINIS(CPU)
+# 单机分布式训练MINIST(CPU)
 
 ## 1. All_Reduce
 
@@ -156,8 +156,9 @@ def average_gradients(model):
     size = float(dist.get_world_size())
     for param in model.parameters():
         dist.reduce(param.grad.data,0, op=dist.ReduceOp.SUM)
-        param.grad.data /= size
-    
+        if(dist.get_rank()==0):
+            param.grad.data/=size
+        dist.broadcast(param.grad.data,src=0)
 
 # 模型
 class ConvNet(nn.Module):
@@ -264,4 +265,4 @@ if __name__ == "__main__":
 
 #### 训练效果
 
-![image-20230115235235585](../img/train2.png)
+![image-20230118232048609](../img/MINISTreduce+broadcast.png)

@@ -74,7 +74,7 @@ MASTER_PORT - 需要; 必须是机器上的自由端口，等级为0。
 
 **汇总记录不同 GPU 上生成的准确率、损失函数等指标信息**。这个 API 就是 `torch.distributed.all_reduce`。示意图如下：
 
-![fig2_allreduce.jpg](https://github.com/tczhangzhi/pytorch-distributed/blob/master/assets/fig2_allreduce.jpg?raw=true)
+![fig2_allreduce.jpg](../img/fig2_allreduce.jpg)
 
 具体来说，它的工作过程包含以下三步：
 

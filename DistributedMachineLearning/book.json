@@ -4,7 +4,7 @@
     "author": "爱学习的草履虫",
     "lang": "zh-cn",
     "description": "分布式机器学习笔记",
-    "plugins": ["search-pro","code","expandable-chapters","back-to-top-button","theme-lou","flexible-alerts","highlight"],
+    "plugins": ["-lunr","-search","search-pro","code","expandable-chapters","back-to-top-button","theme-lou","flexible-alerts","highlight"],
     "pluginsConfig": {
       "flexible-alerts": {
         "style": "flat" 
