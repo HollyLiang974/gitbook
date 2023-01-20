@@ -12,7 +12,7 @@
       "theme-lou": {
         "color": "#009688", 
         "favicon": "static/icon.gif",
-        "logo": "static/icon1.gif", 
+        "logo": "static/icon.jpg", 
         "appleTouchIconPrecomposed152": "static/apple.png", 
         "copyrightLogo": "assets/copyright.png",  
         "forbidCopy": false, 
