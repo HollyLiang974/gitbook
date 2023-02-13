@@ -1,0 +1,37 @@
+
+{
+    "title": "无聊的笔记本",
+    "author": "爱学习的草履虫",
+    "lang": "zh-cn",
+    "description": "无聊的笔记本",
+    "plugins": ["-lunr","-search","search-pro","code","expandable-chapters","back-to-top-button","theme-lou","flexible-alerts","highlight","livereload"],
+    "pluginsConfig": {
+      "flexible-alerts": {
+        "style": "flat" 
+      },
+      "theme-lou": {
+        "color": "#519bb1", 
+        "favicon": "static/icon.gif",
+        "logo": "static/icon2.webp", 
+        "appleTouchIconPrecomposed152": "static/apple.png", 
+        "copyrightLogo": "assets/copyright.png",  
+        "forbidCopy": false, 
+        "search-placeholder": "Input Keywords to Search",
+        "book-summary-title": "目录", 
+        "book-anchor-title": "本篇章节", 
+        "hide-elements": [".summary .gitbook-link", ".summary .divider"], 
+        "copyright": {
+          "author": "爱学习的草履虫"  
+        }
+      }
+    },
+    "variables": {
+      "themeLou": {
+       
+       
+        "footer": {
+          "copyright": false 
+        }
+      }
+    }
+  }
