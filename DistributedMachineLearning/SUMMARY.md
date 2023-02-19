@@ -8,4 +8,9 @@
 * 三、PyTorch分布式训练案例
     * [3.1 单机分布式训练神经网络案例](chapter1/单机分布式训练MINIST.md)
     * [3.2 单机分布式训练逻辑回归](chapter1/单机分布式训练Breast_Cancer.md)
+* 四、Spark上运行传统的分布式机器学习
+    * 4.1 [spark的安装](chapter2/spark的安装.md)
+    * 4.2 [spark单机版机器学习示例](chapter2/spark单机版机器学习示例.md)
+    * 4.3 [spark集群的搭建](chapter2/spark集群的搭建.md)
+
 

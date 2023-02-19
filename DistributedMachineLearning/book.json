@@ -30,7 +30,7 @@
        
        
         "footer": {
-          "copyright": true 
+          "copyright": false 
         }
       }
     }
