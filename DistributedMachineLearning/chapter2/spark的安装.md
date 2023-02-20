@@ -2,9 +2,13 @@
 
 ## 一、本地安装
 
-### 1. 安装Hadoop [链接](https://dblab.xmu.edu.cn/blog/7/)
+### 1. 安装Hadoop 
 
-### 2. 安装Spark [链接](https://dblab.xmu.edu.cn/blog/1689/)
+[Hadoop安装教程_单机/伪分布式配置_Hadoop2.6.0(2.7.1)/Ubuntu14.04(16.04)](https://dblab.xmu.edu.cn/blog/7/)
+
+### 2. 安装Spark 
+
+[Spark2.1.0+入门：Spark的安装和使用(Python版)](https://dblab.xmu.edu.cn/blog/1689/)
 
 ## 二、Anaconda安装
 
@@ -49,15 +53,11 @@ export PATH=${JAVA_HOME}/bin:$PATH
 source ~/.bashrc
 ```
 
-Shell 命令
-
 这时，可以使用如下命令查看是否安装成功：
 
 ```bash
 java -version
 ```
-
-Shell 命令
 
 如果能够在屏幕上返回如下信息，则说明安装成功：
 
@@ -83,5 +83,11 @@ conda activate pyspark_env
 
 ```
 conda install -c conda-forge pyspark  # can also add "python=3.8 some_package [etc.]" here
+```
+
+## 三、Docker容器
+
+```shell
+docker pull bitnami/spark:3
 ```
 
