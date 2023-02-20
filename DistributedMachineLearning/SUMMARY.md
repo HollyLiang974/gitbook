@@ -13,4 +13,9 @@
     *  [4.2 spark单机版机器学习示例](chapter2/spark单机版机器学习示例.md)
     *  [4.3  spark集群的搭建](chapter2/spark集群的搭建.md)
     *  [4.4  集群机器学习任务](chapter2/集群机器学习任务.md)
+* 五、PMLS分布式机器学习
+    * [5.1 PMLS安装](chapter3/PMLS安装.md)
+    * [5.2 PMLS单机版机器学习](chapter3/PMLS单机版机器学习.md)
+    * [5.3 架设分布式机器学习](chapter3/分布式机器学习.md)
+
 
