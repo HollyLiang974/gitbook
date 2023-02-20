@@ -2,7 +2,7 @@
 
 ## 一、使用三台电脑来搭建一个小型分布式集群环境安装
 
-[Spark 2.0分布式集群环境搭建(Python版)](https://dblab.xmu.edu.cn/blog/1714/#more-1714)
+参考方法：[Spark 2.0分布式集群环境搭建(Python版)](https://dblab.xmu.edu.cn/blog/1714/#more-1714)
 
 ## 二、使用Docker来部署spark集群
 
