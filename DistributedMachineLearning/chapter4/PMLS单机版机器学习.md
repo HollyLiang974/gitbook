@@ -43,7 +43,7 @@ app_dir = "/home/user/bosen/app/dnn"
 使用四个线程在本地机器上执行程序
 
 ```shell
-./script/launch.py
+./script/launch.py   
 ```
 
 执行结果
