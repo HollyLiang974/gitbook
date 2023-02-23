@@ -1,5 +1,7 @@
 # SparkTorch的安装
 
+安装成功了，但有点问题，打算用[analytics-zoo](https://github.com/intel-analytics/analytics-zoo)了
+
 [GitHub仓库地址](https://github.com/dmmiller612/sparktorch)
 
 ## 一、介绍
@@ -21,3 +23,7 @@ On top of these features, SparkTorch can utilize barrier execution, ensuring tha
 Install SparkTorch via pip: `pip install sparktorch`
 
 SparkTorch requires Apache Spark >= 2.4.4, and has only been tested on PyTorch versions >= 1.3.0.
+
+## 参考链接
+
+[“SparkTorch” A High-Performance Distributed Deep Learning Library: Step-by-Step Training of PyTorch Network on Hadoop YARN & Apache Spark in Your Local Machine](https://bhashkarkunal.medium.com/sparktorch-a-high-performance-distributed-deep-learning-library-step-by-step-training-of-pytorch-9b58034fcf9c)

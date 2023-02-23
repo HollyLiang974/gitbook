@@ -1,0 +1,3 @@
+# Spark Security
+
+https://spark.apache.org/docs/latest/security.html

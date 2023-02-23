@@ -8,7 +8,9 @@
 
 参考方法：[使用 Docker 快速部署 Spark + Hadoop 大数据集群](https://zhuanlan.zhihu.com/p/421375012)
 
-### 2.1 spark集群
+### 2.1 Spark Standalone集群
+
+[docker.io/bitnami/spark:3 Dockerfile](https://github.com/bitnami/containers/blob/main/bitnami/spark/3.2/debian-11/Dockerfile)
 
 docker-compose.yml文件
 
@@ -64,7 +66,7 @@ services:
       - '8082:8081'
 ```
 
-### 2.2 spark+Hadoop集群
+### 2.2 S park+Hadoop集群
 
 Hadoop 由分布式文件系统 HDFS、分布式计算框架 MapReduce 和资源管理框架 YARN 组成。MapReduce 是面向磁盘的，运行效率受到磁盘读写性能的约束，Spark 延续了 MapReduce 编程模型的设计思路，提出了面向内存的分布式计算框架，性能较之 MapReduce 有了 10～100 倍的提升。与此同时，Spark 框架还对 HDFS 做了很好的支持，并支持运行在 YARN 集群上。
 
