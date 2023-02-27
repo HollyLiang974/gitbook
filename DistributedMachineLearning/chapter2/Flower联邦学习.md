@@ -206,5 +206,5 @@ python3 client.py
 
 [文档](https://flower.dev/docs/strategies.html)
 
-Flower支持自定义strategies，满足联邦学习的更多需要！
+Flower支持自定义strategies，满足联邦学习的更多需要！！
 
