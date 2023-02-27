@@ -8,6 +8,7 @@
     * [2.2 Pytorch多进程通信](chapter2/PyTorch进程通信.md)
     * [2.3 单机分布式训练神经网络案例](chapter2/单机分布式训练MINIST.md)
     * [2.4 单机分布式训练逻辑回归](chapter2/单机分布式训练Breast_Cancer.md)
+    * [2.5 Flower联邦学习](chapter2/Flower联邦学习.md)
 * 三、Spark分布式机器学习
     *  [3.1 spark的安装](chapter3/spark的安装.md)
     *  [3.2 spark单机版机器学习示例](chapter3/spark单机版机器学习示例.md)
@@ -26,5 +27,4 @@
     * [6.2 Joblib Apache Spark Backend](chapter6/joblibspark.md)
 * 七、Spark Security
     * [7.1 Spark Security](chapter7/Spark Security.md)
-
 
