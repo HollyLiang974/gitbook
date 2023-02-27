@@ -25,8 +25,7 @@ echo "执行命令：git add -A"
 git add -A
 
 echo "Enter the your commit message: "  
-read message 
-sleep 2
+read -e -r message 
 # 把修改的文件提交
 echo "执行命令：commit -m $message"
 git commit -m $message
