@@ -15,6 +15,7 @@
     *  [3.3  spark集群的搭建](chapter3/spark集群的搭建.md)
     *  [3.4  集群机器学习任务](chapter3/集群机器学习任务.md)
     *  [3.5  Spark运行原理](chapter3/Spark运行原理.md)
+    *  [3.6 Spark中ml和mllib的区别](chapter3/Spark中ml和mllib的区别.md)
 * 四、PMLS分布式机器学习
     * [4.1 PMLS安装](chapter4/PMLS安装.md)
     * [4.2 PMLS单机版机器学习](chapter4/PMLS单机版机器学习.md)

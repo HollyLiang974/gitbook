@@ -136,9 +136,131 @@ Spark通过分析各个RDD的依赖关系生成了DAG，再通过分析各个RDD
 
 （2）SparkContext负责计算RDD之间的依赖关系，构建DAG；
 
-（3）DAGScheduler负责把DAG图分解成多个Stage，每个Stage中包含了多个Task，每个Task会被TaskScheduler分发给各个WorkerNode上的Executor去执行。
+（3）DAGScheduler负责把DAG图分解成多个Stage，每个Stage中包含了多个Task（Task是Spark中最小的任务执行单元，每个RDD的transformation操作都会被翻译成相应的task，分配到相应的executor节点上对相应的partition执行，RDD在计算的时候，每个分区都会启动一个task，RDD的分区数目决定了总的task数目。），每个Task会被TaskScheduler分发给各个WorkerNode上的Executor去执行。
+
+
 
 ![image-20230227181255285](assets/image-20230227181255285.png)
+
+### 3.5 RDD操作
+
+通常，Spark RDD的常用操作有两种，分别为Transform操作和Action操作。Transform操作并不会立即执行，而是到了Action操作才会被执行。
+
+- Transform操作
+
+| 操作              | 描述                                                         |
+| :---------------- | :----------------------------------------------------------- |
+| `map()`           | 参数是函数，函数应用于RDD每一个元素，返回值是新的RDD。       |
+| `flatMap() `      | 参数是函数，函数应用于RDD每一个元素，拆分元素数据，变成迭代器，返回值是新的RDD。 |
+| `filter() `       | 参数是函数，函数会过滤掉不符合条件的元素，返回值是新的RDD。  |
+| `distinct() `     | 没有参数，将RDD里的元素进行去重操作。                        |
+| `union() `        | 参数是RDD，生成包含两个RDD所有元素的新RDD。                  |
+| `intersection() ` | 参数是RDD，求出两个RDD的共同元素。                           |
+| `subtract() `     | 参数是RDD，去掉原RDD里和参数RDD里相同的元素。                |
+| `cartesian() `    | 参数是RDD，求两个RDD的笛卡尔积。                             |
+
+- Action操作
+
+  | 操作                          | 描述                                                       |
+  | ----------------------------- | :--------------------------------------------------------- |
+  | `collect() `                  | 返回RDD所有元素。                                          |
+  | `count() `                    | 返回RDD中的元素个数。                                      |
+  | `countByValue() `             | 返回各元素在RDD中出现的次数。                              |
+  | `reduce() `                   | 并行整合所有RDD数据，例如求和操作。                        |
+  | `fold(0)(func)`               | 和`reduce()`功能一样，但是fold带有初始值。                 |
+  | `aggregate(0)(seqOp,combop) ` | 和`reduce()`功能一样，但是返回的RDD数据类型和原RDD不一样。 |
+  | `foreach(func) `              | 对RDD每个元素都是使用特定函数。                            |
+
+### 3.6 RDD分区
+
+RDD中的数据被存储在多个分区中。
+
+#### 3.6.1 RDD分区的特征
+
+- 分区永远不会跨越多台机器，即同一分区中的数据始终保证在同一台机器上。
+- 群集中的每个节点包含一个或多个分区。
+- 分区的数目是可以设置的。 默认情况下，它等于所有执行程序节点上的核心总数。 例如。 6个工作节点，每个具有4个核心，RDD将被划分为24个分区。
+
+#### 3.6.2 RDD分区与任务执行的关系
+
+> [!NOTE|style:flat]
+>
+> 在Map阶段partition数目保持不变。
+> 在Reduce阶段，RDD的聚合会触发shuffle操作，聚合后的RDD的partition数目跟具体操作有关，例如repartition操作会聚合成指定分区数，还有一些算子是可配置的。
+
+**RDD在计算的时候，每个分区都会启动一个task，RDD的分区数目决定了总的task数目。**
+
+**申请的Executor数和Executor的CPU核数，决定了你同一时刻可以并行执行的task数量。**
+
+这里我们举个例子来加深对RDD分区数量与task执行的关系的理解
+
+比如的RDD有100个分区，那么计算的时候就会生成100个task，你的资源配置为10个计算节点，每个两2个核，同一时刻可以并行的task数目为20，计算这个RDD就需要5个轮次。如果计算资源不变，你有101个task的话，就需要6个轮次，在最后一轮中，只有一个task在执行，其余核都在空转。
+
+> [!NOTE|style:flat]
+>
+> partition数量**太少**会造成资源利用不够充分。
+> 例如，在资源不变的情况，你的RDD只有10个分区，那么同一时刻只有10个task运行，其余10个核将空转。
+
+**通常在spark调优中，可以增大RDD分区数目来增大任务并行度**。
+
+> [!NOTE|style:flat]
+>
+> 但是partition数量**太多**则会造成task过多，task的传输/序列化开销增大，也可能会造成输出过多的(小)文件
+
+#### 3.6.3 RDD的分区器(Partitioner)
+
+Spark中提供两种分区器：
+
+Spark包含两种数据分区方式：**HashPartitioner（哈希分区）**和**RangePartitioner（范围分区）**。一般而言，对于初始读入的数据是不具有任何的数据分区方式的。数据分区方式只作用于<Key，Value>形式的数据。因此，当一个Job包含Shuffle操作类型的算子时，如groupByKey，reduceByKey etc，此时就会使用数据分区方式来对数据进行分区，即确定某一个Key对应的键值对数据分配到哪一个Partition中。在Spark Shuffle阶段中，共分为Shuffle Write阶段和Shuffle Read阶段，其中在Shuffle Write阶段中，Shuffle Map Task对数据进行处理产生中间数据，然后再根据数据分区方式对中间数据进行分区。最终Shffle Read阶段中的Shuffle Read Task会拉取Shuffle Write阶段中产生的并已经分好区的中间数据。图2中描述了Shuffle阶段与Partition关系。下面则分别介绍Spark中存在的两种数据分区方式。
+
+![img](assets/format,png.png)**HashPartitioner（哈希分区)**
+
+​        HashPartitioner采用哈希的方式对<Key，Value>键值对数据进行分区。其数据分区规则为 partitionId = Key.hashCode % numPartitions，其中partitionId代表该Key对应的键值对数据应当分配到的Partition标识，Key.hashCode表示该Key的哈希值，numPartitions表示包含的Partition个数。图3简单描述了HashPartitioner的数据分区过程。
+![img](assets/70.png)
+
+**RangePartitioner（范围分区）**
+        Spark引入RangePartitioner的目的是为了解决HashPartitioner所带来的分区倾斜问题，也即分区中包含的数据量不均衡问题。HashPartitioner采用哈希的方式将同一类型的Key分配到同一个Partition中，因此当某一或某几种类型数据量较多时，就会造成若干Partition中包含的数据过大问题，而在Job执行过程中，一个Partition对应一个Task，此时就会使得某几个Task运行过慢。RangePartitioner基于抽样的思想来对数据进行分区。图4简单描述了RangePartitioner的数据分区过程。
+
+![img](assets/format,png-16780207257595.png)
+
+#### 3.6.4 自定义分区（定义partitioner个数）
+
+案例:对List里面的单词进行wordcount,并且输出按照每个单词的长度分区输出到不同文件里面
+
+```scala
+//只需要继承Partitioner,重写两个方法
+class MyPartitioner(val num:Int) extends Partitioner {
+
+ //这里定义partitioner个数
+  override def numPartitions: Int = num
+
+  //这里定义分区规则
+  override def getPartition(key: Any): Int = {
+    val len = key.toString.length 
+    //根据单词长度对分区个数取模
+    len % num
+  }
+}
+```
+
+App的使用：
+
+```scala
+bject testMyPartitioner {
+  def main(args: Array[String]): Unit = {
+    val conf = new SparkConf().setAppName("test").setMaster("local[*]")
+    val sc = new SparkContext(conf)
+    val rdd1 = sc.parallelize(List("lijie hello lisi", "zhangsan wangwu mazi", "hehe haha nihaoa heihei lure hehe hello word"))
+    val rdd2=rdd1.flatMap(_.split(" ")).map(x=>{
+      (x,1)
+    })
+    //这里指定自定义分区,然后输出
+    val rdd3 =rdd2.sortBy(_._2).partitionBy(new MyPartitioner(4)).mapPartitions(x=>x).saveAsTextFile("file:///f:/out")
+    println(rdd2.collect().toBuffer)
+    sc.stop()
+  }
+}
+```
 
 ## 四、Spark分布式逻辑回归
 
@@ -158,5 +280,7 @@ Logistic Regression模型的训练过程主要包含两个计算步骤：一是�
 [Spark运行原理](https://blog.csdn.net/hellozhxy/article/details/120410126)
 
 [Spark入门：DataFrame与RDD的区别](https://dblab.xmu.edu.cn/blog/1089/)
+
+[[Spark学习\] Spark RDD详解 ](https://www.cnblogs.com/lestatzhang/p/10611326.html)
 
 许利杰_ 方亚芬 - 大数据处理框架Apache Spark设计与实现（全彩） (2020, 电子工业出版社) 
