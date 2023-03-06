@@ -28,4 +28,5 @@
     * [6.2 Joblib Apache Spark Backend](chapter6/joblibspark.md)
 * 七、Spark Security
     * [7.1 Spark Security](chapter7/Spark Security.md)
+    * [7.2 Spark数据安全](chapter7/Spark数据安全.md)
 
