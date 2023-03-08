@@ -14,6 +14,7 @@
   * [3月3日](chapter3/3月3日.md)
 * 一些无聊的操作
   * [win10远程桌面连接Ubuntu20.4](other/win10远程桌面连接Ubuntu20.4.md)
+  * [pip修改镜像源](other/pip修改镜像源.md)
 
 
 

@@ -94,6 +94,30 @@ sudo systemctl restart xrdp
 
 ![image-20230306202538164](assets/image-20230306202538164.png)
 
+## 四、使用Ubuntu原生主题
+
+如果不做任何配置，启动之后的桌面是非常别扭的，因为是Gnome的原始桌面，没有左侧的任务栏，窗口也没有最小化按钮，等等一些列问题。解决方案也很简单：
+
+### 1. 添加配置文件
+
+```text
+vim ~/.xsessionrc
+
+添加：
+
+export GNOME_SHELL_SESSION_MODE=ubuntu
+export XDG_CURRENT_DESKTOP=ubuntu:GNOME
+export XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg
+```
+
+### 2. 重启xrdp服务
+
+```text
+sudo systemctl restart xrdp.service
+```
+
+此时再连接，你将得到与原生桌面完全一样的效果！
+
 ## 参考链接
 
 [linux 安装配置zerotier](https://www.shuzhiduo.com/A/ZOJPWq2Ozv/)
@@ -101,3 +125,6 @@ sudo systemctl restart xrdp
 [win10远程桌面连接ubuntu20(RDP)](http://www.glaciers.com.cn/2022/09/ubuntu-xrdp/)
 
 [Windows远程桌面连接Ubuntu图文教程](https://www.idcspy.com/58552.html)
+
+[完美方案——解决XRDP连接黑屏，以及桌面优化！](https://zhuanlan.zhihu.com/p/519648451)
+
