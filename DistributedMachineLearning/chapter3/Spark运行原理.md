@@ -144,7 +144,7 @@ Spark通过分析各个RDD的依赖关系生成了DAG，再通过分析各个RDD
 
 ### 3.5 RDD操作
 
-通常，Spark RDD的常用操作有两种，分别为Transform操作和Action操作。Transform操作并不会立即执行，而是到了Action操作才会被执行。
+通常，Spark RDD的常用操作有两种，分别为Transform操作和Action操作。Transform操作并不会立即执行，而是到了Action操作才会被执行。详细操作请见[RDD APIs](https://spark.apache.org/docs/latest/api/python/reference/pyspark.html#rdd-apis)
 
 - Transform操作
 
@@ -170,6 +170,12 @@ Spark通过分析各个RDD的依赖关系生成了DAG，再通过分析各个RDD
   | `fold(0)(func)`               | 和`reduce()`功能一样，但是fold带有初始值。                 |
   | `aggregate(0)(seqOp,combop) ` | 和`reduce()`功能一样，但是返回的RDD数据类型和原RDD不一样。 |
   | `foreach(func) `              | 对RDD每个元素都是使用特定函数。                            |
+
+#### 3.5.1 触发Shuffle的操作
+
+会引起shuffle 的操作包括重分区操作(如repartition 和 coalesce)、ByKey操作(除计数外)(如groupByKey和reduceByKey)以及join操作(如cogroup和join)
+
+![img](assets/v2-6c5382709dc907e1c469d73b12bfbde7_r.jpg)
 
 ### 3.6 RDD分区
 

@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@jeff-tian/gitbook-plugin-katex": "^1.1.14",
     "gitbook-plugin-back-to-top-button": "^0.1.4",
     "gitbook-plugin-code": "^0.1.0",
     "gitbook-plugin-expandable-chapters": "^0.2.0",
