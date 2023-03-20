@@ -178,3 +178,7 @@ if __name__ == "__main__":
 **worker2端**
 
 ![image-20230320203743343](assets/image-20230320203743343.png)
+
+## 链接
+
+https://www.w3cschool.cn/pytorch/pytorch-t8g53bt3.html
