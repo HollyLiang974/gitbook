@@ -1,4 +1,4 @@
-# 单机分布式训练MINIST(CPU)
+# 单机分布式训练MNIST(CPU)
 
 ## 1. All_Reduce
 
