@@ -16,6 +16,8 @@
     "gitbook-plugin-expandable-chapters": "^0.2.0",
     "gitbook-plugin-flexible-alerts": "^1.0.4",
     "gitbook-plugin-highlight": "^2.0.3",
+    "gitbook-plugin-latex-codecogs": "^1.0.1",
+    "gitbook-plugin-mathjax": "^2.0.0",
     "gitbook-plugin-search-pro": "^2.0.2",
     "gitbook-plugin-theme-lou": "^1.0.3",
     "katex": "^0.16.4",
